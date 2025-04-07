@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ಗಣಕ ಚತುರ - Coding Event Invitation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1581091012184-5c7f8e9ec36f?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .hidden { display: none; }
+
+    .sparkle {
+      animation: sparkle 1.5s forwards ease-out;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      background: #351B5E;
+      padding: 10px 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #000;
+      margin: 10px 20px;
+position: relative;
+margin-top: 90px;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typeWriter 2s steps(30, end) forwards 0.5s;
+    }
+
+    @keyframes typeWriter {
+      0% { clip-path: inset(0 100% 0 0); }
+      100% { clip-path: inset(0 0 0 0); }
+    }
+
+    button {
+      font-family: 'Raleway', sans-serif;
+      padding: 5px 1px;
+      font-size: 20px;
+      font-weight: bold;
+      background: #6a5acd;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 15px;
+      margin-top:3px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out 2.5s forwards;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    button:hover {
+      background: #836fff;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+
+    .container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+      max-width: 1300px;
+      margin-top: 10px;
+      background: #351B5E;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out 3s forwards;
+margin-bottom: 30px;
+    }
+
+    .event-container {
+      flex: 1;
+margin-top: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 30px;
+      border: 5px solid #fff;
+      box-shadow: 5px 5px 15px #fff;
+      transition: flex 0.5s ease;
+      width: 250px;
+      height: 350px;
+margin-bottom: 10px;
+    }
+
+    .event-container.shrink {
+      flex: 0.6;
+    }
+
+    .rounds-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      flex: 1;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    .round-box {
+      width: 250px;
+      height: 330px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.2);
+      color: #000;
+      transform: scale(0.9);
+      opacity: 0;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .round-box.show {
+      transform: scale(1);
+      opacity: 1;
+      display: block;
+    }
+
+    #round1Details { background-color: #FFB8E0; }
+    #round2Details { background-color: #e5ffe5; }
+    #round3Details { background-color: #ffe4e1; }
+
+    footer {
+      margin-top: 10px;
+      font-size: 18px;
+      background: #EC7FA9;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #fff;
+      box-shadow: 0 0 10px #FBF3B9;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out 3.5s forwards;
+      width: 100%;
+    }
+
+    ul { list-style-type: none; padding: 0; }
+    ul li { margin: 8px 0; cursor: pointer; transition: color 0.3s ease; }
+    ul li:hover { color: #f0f0f0; }
+
+    audio { display: none; }
+
+    #particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      animation: float 3s infinite linear, twinkle 1s infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      50% { transform: translateY(20px) translateX(10px) rotate(180deg); }
+      100% { transform: translateY(0) translateX(0) rotate(360deg); }
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    #imageContainer1, #imageContainer2, #imageContainer3 {
+      margin-top: 10px;
+      display: none;
+    }
+
+    #imageContainer1 img,
+    #imageContainer2 img,
+    #imageContainer3 img {
+      width: 300px;
+      height: 400px;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+      background: none;
+      opacity: 0;
+      animation: fadeInImage 1s ease-out forwards;
+      object-fit: cover;
+    }
+
+    @keyframes fadeInImage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body onclick="document.getElementById('bgAudio').play()">
+  <div id="particles-container"></div>
+
+<audio id="bgAudio" src="a1.MP3" autoplay loop></audio>
+
+  <img src="http://jsssmiugpg.com/images/j19.png" alt="Top Banner" style="display: block; margin: 0; padding: 0; position: absolute; top: 0; left: 0; width: 100%; z-index: -1;"  />
+
+  <h1>Welcome to <span style="color:#ffffff;">ಗಣಕ ಚತುರ</span> - The Ultimate Coding Event!</h1>
+  <button onclick="launchEvent()">Launch Event</button>
+
+  <div class="container">
+    <div id="eventDetails" class="hidden event-container">
+      <h2 class="sparkle" style="margin-top: -10px;"><b>ಗಣಕ ಚತುರ Begins!</b></h2>
+      <p>Join us for an electrifying coding experience where your skills will be tested to the max!</p>
+      <h3>💡 Event Rounds:</h3>
+      <ul>
+        <li>🎯 <strong>Round 1:</strong> <b>ಸಾಫಲ್ಯ</b></li>
+        <li>🛠️ <strong>Round 2:</strong> <b>ಅಭಿಯೋಗ</b></li>
+        <li>🏆 <strong>Round 3:</strong> <b>ಆರೋಹ</b></li>
+      </ul>
+<p  style="color: #FFD700;">📅 <strong>Date:</strong> 7th & 8th April 2025</p>
+    <p  style="color: #FFD700;">⏰ <strong>Time:</strong> 2:30 PM onwards</p>
+    <p  style="color: #FFD700;">📍 <strong>Venue:</strong> III Floor, Room No 30, Department of Computer Science</p>
+
+    </div>
+
+    <div class="rounds-wrapper">
+      <div id="round1Details" class="round-box">
+        <h2 class="sparkle" style="margin-top: -10px;"><b>ಸಾಫಲ್ಯ</b></h2>
+        <p>📌 There will be 20 questions</p>
+        <p>⏳ Time limit: 15 minutes</p>
+	<p>📝No double answers / No negative marks</p>
+	<p>📝Top scorers move to next round</p>
+        <p>🖥️ Get ready to test your knowledge under time pressure!</p>
+
+      </div>
+      <div id="imageContainer1"><img src="img2.jpeg" alt="Round 1 Image"></div>
+
+      <div id="round2Details" class="round-box">
+        <h2 class="sparkle" style="margin-top: -10px;"><b>ಅಭಿಯೋಗ</b></h2>
+        <p>⏳ Time limit: 45 minutes(3 Levels)</p>
+	<p>📝questions: L1 - 7, L2 - 5, L3 - 3</p>
+	<p>👥All team members must participate</p>
+        <p>💻 Debug and fix programming errors</p>
+        <p>🛠️ Show your problem-solving skills!</p>
+ 
+      </div>
+      <div id="imageContainer2"><img src="img3.jpeg" alt="Round 2 Image"></div>
+
+      <div id="round3Details" class="round-box">
+        <h2 class="sparkle" style="margin-top: -10px;"><b>ಆರೋಹ</b></h2>
+        <p>⏳ Time limit: 45 minutes</p>
+	<p>🌐Website should be interactive and attractive</p>
+	<p>👨‍💻Use any open-source tools/languages</p>
+        <p>🖥️ Solve complex programming problems</p>
+
+        <p>🏆 Compete for the ultimate coding champion title!</p>
+
+      </div>
+      <div id="imageContainer3"><img src="img4.jpeg" alt="Round 3 Image"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>📅 <strong>Date:</strong> 7th & 8th April 2025</p>
+    <p>⏰ <strong>Time:</strong> 2:30 PM onwards</p>
+    <p>📍 <strong>Venue:</strong> III Floor, Room No 30, Department of Computer Science</p>
+  </footer>
+
+  <script>
+    let roundIndex = 0;
+    const roundIds = ['round1Details', 'round2Details', 'round3Details'];
+
+    function launchEvent() {
+      const eventDetails = document.getElementById('eventDetails');
+      eventDetails.classList.remove('hidden');
+      eventDetails.classList.add('sparkle');
+      shrinkEventDetails();
+      startRoundLoop();
+    }
+
+    function shrinkEventDetails() {
+      document.getElementById('eventDetails').classList.add('shrink');
+    }
+
+    function startRoundLoop() {
+      setInterval(() => {
+        roundIds.forEach(id => {
+          document.getElementById(id).classList.remove('show');
+        });
+
+        const currentId = roundIds[roundIndex];
+        document.getElementById(currentId).classList.add('show', 'sparkle');
+
+        document.getElementById('imageContainer1').style.display = (currentId === 'round1Details') ? 'block' : 'none';
+        document.getElementById('imageContainer2').style.display = (currentId === 'round2Details') ? 'block' : 'none';
+        document.getElementById('imageContainer3').style.display = (currentId === 'round3Details') ? 'block' : 'none';
+
+        roundIndex = (roundIndex + 1) % roundIds.length;
+      }, 3500);
+    }
+
+    // Particles background
+    const particlesContainer = document.getElementById('particles-container');
+    const numParticles = 50;
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 10 + 5;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.animationDuration = `${Math.random() * 2 + 2}s, twinkle ${Math.random() * 0.5 + 0.8}s infinite alternate`;
+      particle.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.4 + 0.3})`;
+      particlesContainer.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
